@@ -1,0 +1,24 @@
+version: "3.7"
+
+services:
+  app:
+    image: infracloudio/csvserver:latest
+    command: sh -c "gencsv.sh "
+    command: sh -c "chmod 755 /csvserver/* "
+    ports:
+      - 8080:9393
+    volumes:
+      - ./gencsv.sh :/csvserver/
+    environment:
+      CSVSERVER_BORDER: Orange
+
+  prometheus:
+    image: prom/prometheus:latest
+    restart: always
+    ports:
+      - 9090:9090
+    volumes:
+      - type: bind
+        source: ./gencsv.sh
+        target: /etc/prometheus/prometheus.yml
+
