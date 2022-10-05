@@ -1,0 +1,13 @@
+version: "3.7"
+
+services:
+  app:
+    image: infracloudio/csvserver:latest
+    command: sh -c "./gencsv.sh \"
+    command: sh -c "chmod 755 /csvserver/* \"
+    ports:
+      - 8080:9393
+    volumes:
+      - ./gencsv.sh :/csvserver/
+      - /home/ec2-user/csvserver/solution :/csvserver
+

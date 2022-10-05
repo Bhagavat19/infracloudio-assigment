@@ -1,0 +1,1 @@
+docker run --name cont3 -v /home/ec2-user/csvserver/solution/inputFile:/csvserver/inputdata -p 8080:9390 -e CSVSERVER_BORDER='Orange' infracloudio/csvserver:latest 
